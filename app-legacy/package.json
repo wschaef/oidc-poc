@@ -1,0 +1,18 @@
+{
+  "name": "application",
+  "version": "1.0.0",
+  "description": "a simple application for POC of oidc proxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "oidc",
+    "application"
+  ],
+  "author": "mydev.ws@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
