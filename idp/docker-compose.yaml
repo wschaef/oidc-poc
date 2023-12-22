@@ -1,7 +1,6 @@
 version: '3'
 services:
-  
-  keycloak:
+  idp:
     image: jboss/keycloak
     environment:
       KEYCLOAK_USER: admin
@@ -16,6 +15,10 @@ services:
       - ./config.json:/tmp/config.json
     ports:
       - "8080:8080"
+    networks:
+      - public_net
 
 
-  # Keycloak service configuration goes here
+networks:
+  public_net:
+    external: true

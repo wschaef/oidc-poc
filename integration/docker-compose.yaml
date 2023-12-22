@@ -1,11 +1,11 @@
 version: '3'
 services:
-  express-app:
+  app-legacy:
     image: my-express-app
     ports:
       - "3000:3000"
     networks:
-      - app-network
+      - private_net
 
   # nginx-proxy:
   #   image: nginx:latest
@@ -18,7 +18,7 @@ services:
   #   depends_on:
   #     - express-app
   
-  oauth2-proxy:
+  proxy:
     image: quay.io/oauth2-proxy/oauth2-proxy
     volumes:
       - ../proxy/oauth2-proxy.cfg:/etc/oauth2-proxy.cfg
@@ -28,8 +28,10 @@ services:
     ports:
       - "4180:4180"
     networks:
-      - app-network
-
+      - public_net
+      - private_net
+    depends_on:
+      - app-legacy
 
   # keycloak:
   #   image: jboss/keycloak
@@ -51,4 +53,7 @@ services:
   # Keycloak service configuration goes here
 
 networks:
-  app-network:
+  public_net:
+    external: true
+  private_net:
+    external: true
